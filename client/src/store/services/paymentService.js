@@ -22,15 +22,6 @@ const paymentService = createApi({
           };
         },
       }),
-      webhookPayment: builder.mutation({
-        query: (cart) => {
-          return {
-            url: "/webhook",
-            method: "POST",
-            body: cart,
-          };
-        },
-      }),
       verifyPayment: builder.query({
         query: (id) => {
           return {
@@ -42,5 +33,5 @@ const paymentService = createApi({
     };
   },
 });
-export const { useSendPaymentMutation,webhookPayment, useVerifyPaymentQuery } = paymentService;
+export const { useSendPaymentMutation, useVerifyPaymentQuery } = paymentService;
 export default paymentService;
