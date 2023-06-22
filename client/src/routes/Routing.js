@@ -26,6 +26,7 @@ const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* ROUTING FOR SHOP without login */}
         <Route path="/" element={<Home />} />
         <Route path="cat-products/:name" element={<CatProducts />} />
         <Route path="cat-products/:name/:page" element={<CatProducts />} />
@@ -35,16 +36,28 @@ const Routing = () => {
         />
         <Route path="cart" element={<Cart />} />
         <Route path="product/:name" element={<Product />} />
+
+        {/* ROUTING FOR SHOP */}
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
+
+
+        {/* ROUTING FOR SHOP */}
         <Route element={<UserRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="orders" element={<UserOrders />} />
           <Route path="orders/:page" element={<UserOrders />} />
           <Route path="user-order-details/:id" element={<UserOrderDetails />} />
         </Route>
+
+
+
+
+        {/* ROUTING FOR VENDOR */}
+
+
         <Route path="auth">
           <Route
             path="admin-login"

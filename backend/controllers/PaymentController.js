@@ -69,13 +69,13 @@ class PaymentController {
           quantity: item.quantity,
         };
       }),
-      payment_intent_data: {
-        on_behalf_of: "acct_1MwMroCw2vgrsKGI",
-        application_fee_amount: Math.round((100).toFixed(2) * 100),
-        transfer_data: {
-          destination: "acct_1MwMroCw2vgrsKGI",
-        },
-      },
+      // payment_intent_data: {
+      //   on_behalf_of: "acct_1MwMroCw2vgrsKGI",
+      //   application_fee_amount: Math.round((100).toFixed(2) * 100),
+      //   transfer_data: {
+      //     destination: "acct_1MwMroCw2vgrsKGI",
+      //   },
+      // },
       customer: customer.id,
       mode: "payment",
       success_url: `${process.env.CLIENT}/user?session_id={CHECKOUT_SESSION_ID}`,
