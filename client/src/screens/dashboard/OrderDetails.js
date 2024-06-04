@@ -99,7 +99,7 @@ const OrderDetails = () => {
                     <tr>
                       <td className="dashboard-td">
                         <img
-                          src={`/images/${data?.details?.productId?.image1}`}
+                          src={`${data?.details?.productId?.image1}`}
                           alt="image name"
                           className="w-[50px] h-[50px] rounded-full object-cover"
                         />

@@ -10,6 +10,7 @@ class Product {
     form.parse(req, async (err, fields, files) => {
       if (!err) {
         const parsedData = JSON.parse(fields.data);
+        console.log("parsedData",parsedData)
         const errors = [];
         if (parsedData.title.trim().length === 0) {
           errors.push({ msg: "Title is required" });
@@ -27,41 +28,50 @@ class Product {
           errors.push({ msg: "Description is required" });
         }
         if (errors.length === 0) {
-          if (!files["image1"]) {
+          // if (!files["image1"]) {
+          //   errors.push({ msg: "Image1 is required" });
+          // }
+          // if (!files["image2"]) {
+          //   errors.push({ msg: "Image2 is required" });
+          // }
+          // if (!files["image3"]) {
+          //   errors.push({ msg: "Image3 is required" });
+          // }
+          if (!parsedData.image1) {
             errors.push({ msg: "Image1 is required" });
           }
-          if (!files["image2"]) {
+          if (!parsedData.image2) {
             errors.push({ msg: "Image2 is required" });
           }
-          if (!files["image3"]) {
+          if (!parsedData.image3) {
             errors.push({ msg: "Image3 is required" });
           }
           if (errors.length === 0) {
-            const images = {};
-            for (let i = 0; i < Object.keys(files).length; i++) {
-              const mimeType = files[`image${i + 1}`].mimetype;
-              const extension = mimeType.split("/")[1].toLowerCase();
-              if (
-                extension === "jpeg" ||
-                extension === "jpg" ||
-                extension === "png"
-              ) {
-                const imageName = uuidv4() + `.${extension}`;
-                const __dirname = path.resolve();
-                const newPath =
-                  __dirname + `/../client/public/images/${imageName}`;
-                images[`image${i + 1}`] = imageName;
-                fs.copyFile(files[`image${i + 1}`].filepath, newPath, (err) => {
-                  if (err) {
-                    console.log(err);
-                  }
-                });
-              } else {
-                const error = {};
-                error["msg"] = `image${i + 1} has invalid ${extension} type`;
-                errors.push(error);
-              }
-            }
+            // const images = {};   /// not  need of this because i am using firebase  storage now
+            // for (let i = 0; i < Object.keys(files).length; i++) {
+            //   const mimeType = files[`image${i + 1}`].mimetype;
+            //   const extension = mimeType.split("/")[1].toLowerCase();
+            //   if (
+            //     extension === "jpeg" ||
+            //     extension === "jpg" ||
+            //     extension === "png"
+            //   ) {
+            //     const imageName = uuidv4() + `.${extension}`;
+            //     const __dirname = path.resolve();
+            //     const newPath =
+            //       __dirname + `/../client/public/images/${imageName}`;
+            //     images[`image${i + 1}`] = imageName;
+            //     fs.copyFile(files[`image${i + 1}`].filepath, newPath, (err) => {
+            //       if (err) {
+            //         console.log(err);
+            //       }
+            //     });
+            //   } else {
+            //     const error = {};
+            //     error["msg"] = `image${i + 1} has invalid ${extension} type`;
+            //     errors.push(error);
+            //   }
+            // }
             if (errors.length === 0) {
               try {
                 const response = await ProductModel.create({
@@ -72,9 +82,9 @@ class Product {
                   category: parsedData.category,
                   colors: parsedData.colors,
                   sizes: JSON.parse(fields.sizes),
-                  image1: images["image1"],
-                  image2: images["image2"],
-                  image3: images["image3"],
+                  image1: parsedData.image1,
+                  image2: parsedData.image2,
+                  image3: parsedData.image3,
                   description: fields.description,
                 });
                 return res
@@ -163,19 +173,21 @@ class Product {
   async deleteProduct(req, res) {
     const { id } = req.params;
     try {
-      const product = await ProductModel.findOne({ _id: id });
-      [1, 2, 3].forEach((number) => {
-        let key = `image${number}`;
-        console.log(key);
-        let image = product[key];
-        let __dirname = path.resolve();
-        let imagePath = __dirname + `/../client/public/images/${image}`;
-        fs.unlink(imagePath, (err) => {
-          if (err) {
-            throw new Error(err);
-          }
-        });
-      });
+
+      //  /// not  need of this because i am using firebase  storage now
+      // const product = await ProductModel.findOne({ _id: id });
+      // [1, 2, 3].forEach((number) => {
+      //   let key = `image${number}`;
+      //   console.log(key);
+      //   let image = product[key];
+      //   let __dirname = path.resolve();
+      //   let imagePath = __dirname + `/../client/public/images/${image}`;
+      //   fs.unlink(imagePath, (err) => {
+      //     if (err) {
+      //       throw new Error(err);
+      //     }
+      //   });
+      // });
       await ProductModel.findByIdAndDelete(id);
       return res
         .status(200)

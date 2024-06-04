@@ -34,7 +34,7 @@ const Orders = () => {
                       <td className="dashboard-td">{order.quantities}</td>
                       <td className="dashboard-td">
                         <img
-                          src={`/images/${order.productId.image1}`}
+                          src={`${order.productId.image1}`}
                           alt="image name"
                           className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full object-cover"
                         />

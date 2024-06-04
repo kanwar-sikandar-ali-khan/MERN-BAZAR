@@ -84,7 +84,7 @@ const Cart = () => {
                       <tr className="even:bg-gray-50" key={item._id}>
                         <td className="td">
                           <img
-                            src={`/images/${item.image1}`}
+                            src={`${item.image1}`}
                             alt={item.title}
                             className="w-12 h-12 object-cover rounded-full"
                           />

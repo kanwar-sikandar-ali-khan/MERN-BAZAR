@@ -57,7 +57,7 @@ const Products = () => {
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">${product.price}.00</td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">{product.stock}</td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                           <img src={`/images/${product.image1}`} alt="image name" className="w-20 h-20 rounded-md object-cover" />
+                           <img src={`${product.image1}`} alt="image name" className="w-20 h-20 rounded-md object-cover" />
                         </td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400"><Link to={`/dashboard/edit-product/${product._id}`} className="btn btn-warning">edit</Link></td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400"><span className="btn btn-danger cursor-pointer" onClick={() => deleteProduct(product._id)}>delete</span></td>

@@ -61,7 +61,7 @@ const UserOrders = () => {
                               <tr className="even:bg-gray-50" key={item._id}>
                                 <td className="td">
                                   <img
-                                    src={`/images/${item.productId.image1}`}
+                                    src={`${item.productId.image1}`}
                                     alt={item.productId.title}
                                     className="w-12 h-12 object-cover rounded-full"
                                   />

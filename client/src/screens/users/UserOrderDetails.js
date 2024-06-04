@@ -54,7 +54,7 @@ const UserOrderDetails = () => {
                 <div className="flex flex-col md:flex-row flex-wrap my-5">
                   <div className="w-[130px] md:w-[160px] h-[130px] md:h-[160px] overflow-hidden">
                     <img
-                      src={`/images/${data?.details?.productId?.image1}`}
+                      src={`${data?.details?.productId?.image1}`}
                       alt=""
                       className="w-full h-full object-cover rounded-md"
                     />
