@@ -15,7 +15,7 @@ import Colors from "../../components/Colors";
 import SizesList from "../../components/SizesList";
 import ImagesPreview from "../../components/ImagesPreview";
 import { setSuccess } from "../../store/reducers/globalReducer";
-import { uploadAdsImage } from "../../components/config/firebase";
+import { uploadAdsImage } from "../../config/firebase";
 const CreateProduct = () => {
     const { data = [], isFetching } = useAllCategoriesQuery();
     const [value, setValue] = useState('');
@@ -31,7 +31,6 @@ const CreateProduct = () => {
         image3: ''
     });
 
-    console.log("state", state)
     const [sizes] = useState([
         { name: 'xsm' },
         { name: 'sm' },
@@ -115,6 +114,10 @@ const CreateProduct = () => {
             navigate('/dashboard/products');
         }
     }, [response?.isSuccess])
+
+    
+
+
     return (
         <Wrapper>
             <ScreenHeader>

@@ -7,6 +7,10 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const paymentRoutes = require("./routes/payment");
 const orderRoutes = require("./routes/orderRoutes");
+const parentRoutes = require("./routes/parentRoutes");
+const childrenRoutes = require("./routes/childrenRoutes")
+
+
 const app = express();
 
 // database connection
@@ -32,6 +36,10 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", parentRoutes);
+app.use("/api", childrenRoutes);
+
+
 
 const port = env.PORT || 5001;
 
